@@ -1,0 +1,15 @@
+services:
+  product-service:
+    build: ./product
+    ports:
+      - 8080:80
+
+  web-app:
+    build: ./web-app
+    volumes:
+      - ./web-app:/usr/src/app
+      - /usr/src/app/node_modules/
+    ports:
+      - 5173:5173
+    depends_on:
+      - product-service
